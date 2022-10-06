@@ -6,7 +6,7 @@ Small application to assist with keyword searches on any supported API's for vul
   https://nvd.nist.gov/developers/vulnerabilities
   https://vuldb.com/?kb.api
   
-| Name        | Supported           | API Required?  |
+| Name        | Supported           | API Key Required?  |
 | ------------- |:-------------:| -----:|
 | https://nvd.nist.gov/developers/vulnerabilities| Yes | No |
 | https://vuldb.com/?kb.api| Yes | Yes |
