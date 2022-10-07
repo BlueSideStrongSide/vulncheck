@@ -13,14 +13,16 @@ supported_api_data = {
         "headers": [{"User-Agent":"User-Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0",
                      "apiKey":"*****"}],
         "url": "https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=",
-        "http_method": "GET"
+        "http_method": "GET",
+        "interval":4
     },
     "VULNDBAPI": {
         "headers": [{"User-Agent":"User-Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0",
                      "X-VulDB-ApiKey":"*****"}],
         "data":"*****",
         "url": "https://vuldb.com/?api",
-        "http_method": "POST"
+        "http_method": "POST",
+        "interval":7
     }
 }
 
@@ -31,17 +33,18 @@ class VULNBASEAPI(ABC):
 
         self.api_key = os.getenv(self.__class__.__name__)
         self.get_api_specific_data = supported_api_data.get(self.__class__.__name__)
+
         self.result = None
+        self.format_api_requested_data = []
 
-    def keyword_search(self, keyword: str):
+    def keyword_search(self, keyword_list: list):
 
-        self.prepare_request(requested_keyword=keyword)
+        self.prepare_request(requested_keyword=keyword_list)
 
-        result_fr = fetchrep(vuln_api_data=self.get_api_specific_data).fetch_rep()
+        self.result = fetchrep(vuln_api_data=self.get_api_specific_data,
+                               vuln_api_formatted_data=self.format_api_requested_data).fetch_rep()
 
-        self.result = result_fr
-
-        return self.__class__.__name__,"returned from fetch",self.result
+        return f'{self.__class__.__name__},"returned from fetch "{len(self.result)} items {self.result}'
 
     @abstractmethod
     def prepare_request(self, requested_keyword=None):
