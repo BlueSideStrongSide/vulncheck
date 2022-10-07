@@ -14,5 +14,5 @@ class VULNDBAPI(vulnbaseapi):
 
 
     def prepare_request(self, requested_keyword=None):
-        self.get_api_specific_data["data"] = "advancedsearch=vendor:Microsoft,product:Windows,version:10"
+        self.get_api_specific_data["data"] = f"search={requested_keyword}"
         self.get_api_specific_data["headers"][0]["X-VulDB-ApiKey"] = self.api_key

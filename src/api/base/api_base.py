@@ -34,8 +34,11 @@ class VULNBASEAPI(ABC):
         self.result = None
 
     def keyword_search(self, keyword: str):
+
         self.prepare_request(requested_keyword=keyword)
+
         result_fr = fetchrep(vuln_api_data=self.get_api_specific_data).fetch_rep()
+
         self.result = result_fr
 
         return self.__class__.__name__,"returned from fetch",self.result

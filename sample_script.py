@@ -8,4 +8,4 @@ if __name__ == '__main__':
     vuln_checker.request_check(keyword="schannel.dll", API=None) #we need a result handler
 
     for result in vuln_checker.results:
-        print(result)
+        print(result ,end='\n')
