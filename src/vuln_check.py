@@ -9,18 +9,18 @@ import asyncio
 class VULNCHECK:
     def __init__(self):
 
-        #Enum use would clean this up a bit and let the user decide which API's to call.
-        self.nist = NISTAPI()
-        self.vulndb = VULNDBAPI()
         self.results = []
         self.keyword = []
         self.prepared_keyword = []
+
+        #Enum use would clean this up a bit and let the user decide which API's to call.
+        self.nist = NISTAPI()
+        self.vulndb = VULNDBAPI()
 
     def _convert_keyword_to_list(self):
         self.prepared_keyword.append(self.keyword)
 
     def request_check(self, keyword: str|list, API: str =None):
-        #Everything will get moved into a string for processing
         self.keyword = keyword
 
         if isinstance(self.keyword,str):
