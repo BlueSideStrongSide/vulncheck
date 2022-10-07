@@ -4,6 +4,7 @@ from src.api.nist.nist import NISTAPI
 from src.api.vulndb.vulndb import VULNDBAPI
 
 import asyncio
+import time
 
 
 class VULNCHECK:
@@ -28,7 +29,8 @@ class VULNCHECK:
 
         for keyword in self.prepared_keyword:
             self.results.append(self.nist.keyword_search(keyword))
-            # self.results.append(self.vulndb.keyword_search(keyword))
+            self.results.append(self.vulndb.keyword_search(keyword))
+            time.sleep(7)
 
         return f"We checked for {''.join(self.prepared_keyword)}"
 
