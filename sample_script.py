@@ -9,4 +9,4 @@ if __name__ == '__main__':
     vuln_checker.request_check(keyword=test_list_dll ,API=None) #we need a result handler
 
     for result in vuln_checker.results:
-        print(result ,end='\n')
+        print(result ,end='\n\n')

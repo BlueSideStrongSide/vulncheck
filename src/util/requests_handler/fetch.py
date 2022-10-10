@@ -15,7 +15,7 @@ class FETCHREP:
 
     def fetch_rep(self,multiple_lookups=None):
 
-        # url = self.vuln_api_data["url"]
+        url = self.vuln_api_data["url"] or None
         headers = self.vuln_api_data["headers"][0] or None
         params = self.vuln_api_data.get("params")
         data = self.vuln_api_data.get("data")
@@ -26,13 +26,16 @@ class FETCHREP:
         with self.request_session as s:
             fetch_url = getattr(s, self.vuln_api_data["http_method"].lower())
 
-            for url in self.vuln_api_fmt_data :
+            for c_url in self.vuln_api_fmt_data :
                 print(f"Synchronous Get Requests {current_item}/{len(self.vuln_api_fmt_data)}")
 
                 if multiple_lookups:
                     time.sleep(interval)
 
-                resp = fetch_url(url=url.get("url"), headers=headers, params=params, data=data)
+                # print(f'{c_url.get("url") or url},{headers},{params},{c_url.get("data") or data}')
+                # test_value = c_url.get("data") or data
+                # print(type(test_value))
+                resp = fetch_url(url=c_url.get("url") or url , headers=headers, params=params, data=c_url.get("data") or data)
 
                 response = json.loads(resp.text)
 

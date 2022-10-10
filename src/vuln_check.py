@@ -28,7 +28,7 @@ class VULNCHECK:
             self.prepared_keyword = keyword
 
         self.results.append(self.nist.keyword_search(self.prepared_keyword))
-        # self.results.append(self.vulndb.keyword_search(keyword))
+        self.results.append(self.vulndb.keyword_search(keyword))
 
         return f"We checked for {''.join(self.prepared_keyword)}"
 
