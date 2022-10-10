@@ -8,7 +8,10 @@ import asyncio
 
 class VULNCHECK:
     def __init__(self):
+        """
+        Class to handle dispatching commands to the supported API's
 
+        """
         self.results = []
         self.keyword = None
         self.prepared_keyword = []
@@ -21,7 +24,12 @@ class VULNCHECK:
         self.prepared_keyword.append(keyword)
 
     def request_check(self, keyword: str|list, API: str =None):
+        """
 
+        :param keyword: a list of dll's or a string of one dll to be checked
+        :param API: Currently not used but will determine which API is used
+        :return: string with status of the requested operations
+        """
         if isinstance(keyword,str):
             self._convert_keyword_to_list(keyword)
         else:
