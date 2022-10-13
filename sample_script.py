@@ -8,7 +8,6 @@ if __name__ == '__main__':
     test_one_dll = "schannel.dll"
 
     vuln_checker.request_check(keyword=test_list_dll ,API=None)
-    # vuln_checker.async_request_check(keyword=test_one_dll, API=None) # <-- Not working
 
     for result in vuln_checker.results:
         print(result)
