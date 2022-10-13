@@ -17,8 +17,6 @@ class NISTAPI(vulnbaseapi):
         super().__init__()
 
     def prepare_request(self, requested_keyword: list =None):
-        #Updates Needed
-        # self.get_api_specific_data["url"] = self.get_api_specific_data["url"] + requested_keyword
         self.get_api_specific_data["headers"][0]["apiKey"] = self.api_key
 
         for keyword in requested_keyword:
