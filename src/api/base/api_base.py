@@ -1,9 +1,8 @@
-# ALl APIS should inheret from this class
-
 from src.util.requests_handler.fetch import FETCHREP as fetchrep
+from src.util.results_handler.vuln_results import VulnCheckResults as h_vuln_results
 from dotenv import dotenv_values,load_dotenv, find_dotenv
-from pathlib import Path
 from abc import ABC, abstractmethod
+from pathlib import Path
 import asyncio
 import os
 
@@ -35,17 +34,22 @@ class VULNBASEAPI(ABC):
 
         self.api_key = os.getenv(self.__class__.__name__)
         self.get_api_specific_data = supported_api_data.get(self.__class__.__name__)
+
         self.result = None
+        self.formatted_result = None
         self.format_api_requested_data = []
 
-    async def  keyword_search(self, keyword_list: list, req_async: bool =False):
+    async def keyword_search(self, keyword_list: list, result_handler=None): #<-- add typing
 
         self.prepare_request(requested_keyword=keyword_list)
 
         self.result = await fetchrep(vuln_api_data=self.get_api_specific_data,
-                                     vuln_api_formatted_data=self.format_api_requested_data).async_fetch_rep()
+                                     vuln_api_formatted_data=self.format_api_requested_data).async_fetch_rep() #async_fetch_rep make this an param
 
-        return f'{self.__class__.__name__},returned from fetch {len(self.result)} item(s) {self.result}'
+        #initial implementation of the result handler
+        await result_handler.send_result(api_result=self.result)
+
+        return f'{self.__class__.__name__},returned from fetch {len(self.result)}'
 
     @abstractmethod
     def prepare_request(self, requested_keyword: list =None):
@@ -54,7 +58,7 @@ class VULNBASEAPI(ABC):
         Place any logic required to create a working request to the desired API.
         Review the provided API's for examples
 
-        :param requested_keyword: this will be the of keyword terms requested.
+        :param requested_keyword: this will be the keyword terms requested.
         """
         pass
 

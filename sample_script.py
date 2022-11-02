@@ -1,4 +1,4 @@
-# Simple interaction with the vulnerability check application
+import pprint
 from src.vuln_check import VULNCHECK as vc
 
 
@@ -7,7 +7,10 @@ if __name__ == '__main__':
     test_list_dll = ["schannel.dll", "mylib.dll", "dbghelp.dll"]
     test_one_dll = "schannel.dll"
 
-    vuln_checker.request_check(keyword=test_list_dll ,API=None)
+    vuln_checker.request_check(keyword=test_list_dll ,API=None, realtime=None)
 
-    for result in vuln_checker.results:
-        print(result)
+    # for result in vuln_checker.results:
+    #     pprint.pprint(*result)
+
+    #create a method to pretty print the results
+    #print(vuln_checker.return_all_results)
