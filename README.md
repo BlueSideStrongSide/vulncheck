@@ -17,12 +17,12 @@ A template .env file has been provided just request an API key from the vendors 
 
 ### Fixes/Features/Updates
 
-- [ ] Remove all synchronous code 
-- [ ] Migrate project to ASYNC
+- [x] Remove all synchronous code 
+- [x] Migrate project to ASYNC
 - [ ] Export configuration within base class
 - [ ] Honor API timeouts
 - [ ] Common result handler across project
-- [ ] Store results from API's
+- [ ] Store results locally  from API's
 - - [ ] Process cache before submitting to API
 - - [ ] Create parameter to disable/enable cache check
 - [ ] Extend additional API interactions using new methods in the API modules
