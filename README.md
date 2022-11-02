@@ -23,7 +23,7 @@ A template .env file has been provided just request an API key from the vendors 
 - [ ] Honor API timeouts
 - [ ] Common result handler across project
 - [ ] Store results locally  from API's
-- - [ ] Process cache before submitting to API
+- - [ ] Process cache before submitting to API's
 - - [ ] Create parameter to disable/enable cache check
 - [ ] Extend additional API interactions using new methods in the API modules
 - [ ] Type Checking throughout
